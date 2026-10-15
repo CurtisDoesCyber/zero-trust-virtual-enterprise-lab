@@ -72,4 +72,39 @@ sudo ufw status verbose
 
 Expected behavior:
 
-- Workstation to Server B SSH: Block
+- Workstation to Server B SSH: Blocked.
+- Workstation to Server B HTTP: Blocked.
+- Kali to Server B shared HTTP resource: Allowed.
+
+The shared resource was accessed using:
+
+```bash
+curl http://192.168.50.20/status.txt
+```
+
+Expected response:
+
+```text
+Server B Shared Status Service - OK
+```
+
+## 3. Configuration Verification
+
+After applying each configuration, the following command was used on each protected server:
+
+```bash
+sudo ufw status verbose
+```
+
+The output was inspected to confirm firewall activation, default policies, allowed source addresses, and permitted TCP ports.
+
+Screenshots of the configuration and scenario tests are retained as experimental evidence.
+
+## 4. Scope and Limitations
+
+- UFW source-IP rules approximate selected Zero Trust principles but do not provide identity-aware, continuously evaluated access decisions.
+- Both architectures use the same isolated internal subnet; logical segmentation is enforced by host-based firewall policies.
+- Server B's HTTP rule permits Kali to access TCP port 80 generally, not only `/status.txt`. Resource-specific authorization was not implemented.
+- SSH service reachability does not establish successful authentication or compromise.
+- Manual IPv4 address restoration was required during some tests because client addressing was not consistently maintained. These interruptions are documented separately in the experimental results and limitations.
+- Firewall configurations were applied and tested in a controlled virtual lab, not a production environment.
