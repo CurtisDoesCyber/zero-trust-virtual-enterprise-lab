@@ -144,6 +144,22 @@ Local laboratory snapshots include:
 
 Before repeating tests, verify client addresses, required services, and active firewall rules. Preserve the distinction between service reachability, authentication denial, authorized login, and network blocking.
 
+## Quick Reproduction Guide
+
+### Quick Reproduction Guide
+
+To review or reproduce the experiment, follow these steps:
+
+1. **Laboratory Setup:** Review [docs/lab-setup.md](docs/lab-setup.md) to configure the four virtual machines, internal network, IP addresses, and required SSH/HTTP services.
+2. **Firewall Configuration:** Review [docs/firewall-configurations.md](docs/firewall-configurations.md) to implement the traditional perimeter-based (P) and Zero Trust-oriented (Z) UFW policies.
+3. **Scenario Execution:** Review [results/scenario-results.md](results/scenario-results.md) for the six predefined scenarios, test commands, expected behaviors, and recorded outcomes. Execute the scenarios under both configurations.
+4. **Evidence Verification:** Examine the [evidence/](evidence/) directory to compare firewall configurations, command outputs, and supporting screenshots.
+5. **Troubleshooting:** Consult [docs/troubleshooting-and-limitations.md](docs/troubleshooting-and-limitations.md) for known configuration issues, troubleshooting procedures, and limitations.
+
+Before executing each scenario, verify client IP addresses, required services, and active UFW rules. Distinguish successful service reachability, authentication denial, authorized access, and network-level blocking.
+
+The expected result is that all six tested paths are reachable under P, while Z blocks three unnecessary paths and preserves three authorized paths. The original study recorded 60 confirmed post-troubleshooting observations.
+
 ## Ethics and AI Use
 
 I conducted all testing within an isolated laboratory under my control. No testing targeted production systems, employer systems, external organizations, public Internet targets, or systems without authorization. The project involved no human subjects or sensitive organizational datasets and excluded destructive malware, persistence mechanisms, and uncontrolled exploitation.
